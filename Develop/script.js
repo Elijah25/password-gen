@@ -1,4 +1,6 @@
 // Assignment code here
+var passValue = "";
+
 var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*?"
 
 // determine how many characters will be in the generated password
@@ -15,40 +17,42 @@ var passwordLength = function() {
 var passwordInfo = function() {
   var charSpecial = window.confirm("Would You like your password to have special characters?") 
     if (!charSpecial) {
-      charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+      var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
     }
-    else charSet = charSet
+    else var charSet = charSet
   var charNumbers = window.confirm ("Would you like your password to have numbers?")
     if (!charNumbers) {
-      charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*?"
+      var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*?"
     }
     else if ((!charNumbers) && (!charSpecial)){
-      charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     }
-    else charSet = charSet
+    else var charSet = charSet
   var charCaps = window.confirm ("Would you like your password to have capital letters?") 
     if (!charCaps) {
-      charSet = "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*?"
+      var charSet = "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*?"
     }
     else if ((!charCaps) && (!charSpecial)) {
-      charSet = "abcdefghijklmnopqrstuvwxyz1234567890"
+      var charSet = "abcdefghijklmnopqrstuvwxyz1234567890"
     }
     else if ((!charCaps) && (!charNumbers)) {
-      charSet = "abcdefghijklmnopqrstuvwxyz!@#$%^&*?"
+      var charSet = "abcdefghijklmnopqrstuvwxyz!@#$%^&*?"
     }
-    else charSet = charSet
-}
-
-// for loop that loops as many times as there are characters in the password as determined by passwordLength
-
-
-var generatePassword = function () {
-  passwordLength();
-  passwordInfo();
+    else var charSet = charSet
 }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+
+// for loop that loops as many times as there are characters in the password as determined by passwordLength
+var generatePassword = function () {
+  passwordLength();
+  passwordInfo();
+  for (var i = 0, n = charset.length; i < passwordLength; i++) {
+    passValue += charSet.charAt(Math.floor(Math.random() * n ));
+  }
+}
+
 
 // Write password to the #password input
 function writePassword() {
