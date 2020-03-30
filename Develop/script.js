@@ -11,18 +11,19 @@ var passwordLength = function() {
       window.alert("Please pick a number between 8 and 128.");
       passwordLength ();
     }
+    else return charNumber
 }
 
 // determine if the password should have captial letters, special characters, and/or numbers
 var passwordInfo = function() {
   var charSpecial = window.confirm("Would You like your password to have special characters?") 
-
+  console.log(charSet)
   var charNumbers = window.confirm ("Would you like your password to have numbers?")
-
+  console.log(charSet)
   var charCaps = window.confirm ("Would you like your password to have capital letters?") 
- 
+  console.log(charSet)
     if ((charSpecial === true) && (charNumbers === true) && (charCaps === true)) {
-      var charSet = charSet
+      var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*?"
     }
     else if ((charSpecial === true) && (charNumbers === false) && (charCaps === false)) {
       var charSet = "abcdefghijklmnopqrstuvwxyz!@#$%^&*?"
@@ -39,28 +40,32 @@ var passwordInfo = function() {
     else if ((charSpecial === false) && (charNumbers === false) && (charCaps === true)) {
       var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     }
-    else charSet === "abcdefghijklmnopqrstuvwxyz"
+    else charSet === "abcdefghijklmnopqrstuvwxyz";
+    console.log (charSet);
 }
 
 // for loop that loops as many times as there are characters in the password as determined by passwordLength
 var passGen = function() {
   console.log (charSet);
+  console.log (passValue);
   for (var i = 0, n = charSet.length; i < passwordLength; i++) {
   passValue += charSet.charAt(Math.floor(Math.random() * n ));
-  return passValue;
   }
+  console.log (passValue);
+  return passValue;
 }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 var generatePassword = function () {
-  passwordLength();
-  passwordInfo();
-  passGen ();
-  return passGen;
+  passwordLength(); 
+    passwordInfo(); 
+    console.log (charSet);
+    console.log (passValue);
+      passGen();
+      console.log(passValue);
 }
-
 
 // Write password to the #password input
 function writePassword() {
