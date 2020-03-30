@@ -1,5 +1,5 @@
 // Assignment code here
-var passValue = "";
+var passValue = ""
 
 var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*?"
 
@@ -16,41 +16,49 @@ var passwordLength = function() {
 // determine if the password should have captial letters, special characters, and/or numbers
 var passwordInfo = function() {
   var charSpecial = window.confirm("Would You like your password to have special characters?") 
-    if (!charSpecial) {
-      var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-    }
-    else var charSet = charSet
+
   var charNumbers = window.confirm ("Would you like your password to have numbers?")
-    if (!charNumbers) {
-      var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*?"
-    }
-    else if ((!charNumbers) && (!charSpecial)){
-      var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    }
-    else var charSet = charSet
+
   var charCaps = window.confirm ("Would you like your password to have capital letters?") 
-    if (!charCaps) {
-      var charSet = "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*?"
+ 
+    if ((charSpecial === true) && (charNumbers === true) && (charCaps === true)) {
+      var charSet = charSet
     }
-    else if ((!charCaps) && (!charSpecial)) {
-      var charSet = "abcdefghijklmnopqrstuvwxyz1234567890"
-    }
-    else if ((!charCaps) && (!charNumbers)) {
+    else if ((charSpecial === true) && (charNumbers === false) && (charCaps === false)) {
       var charSet = "abcdefghijklmnopqrstuvwxyz!@#$%^&*?"
     }
-    else var charSet = charSet
+    else if ((charSpecial === true) && (charNumbers === true) && (charCaps === false)) {
+      var charSet = "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*?"
+    }
+    else if ((charSpecial === true) && (charNumbers === false) && (charCaps === true)) {
+      var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*?"
+    }
+    else if ((charSpecial === false) && (charNumbers === true) && (charCaps === false)) {
+      var charSet = "abcdefghijklmnopqrstuvwxyz1234567890"
+    }
+    else if ((charSpecial === false) && (charNumbers === false) && (charCaps === true)) {
+      var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    }
+    else charSet === "abcdefghijklmnopqrstuvwxyz"
+}
+
+// for loop that loops as many times as there are characters in the password as determined by passwordLength
+var passGen = function() {
+  console.log (charSet);
+  for (var i = 0, n = charSet.length; i < passwordLength; i++) {
+  passValue += charSet.charAt(Math.floor(Math.random() * n ));
+  return passValue;
+  }
 }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-// for loop that loops as many times as there are characters in the password as determined by passwordLength
 var generatePassword = function () {
   passwordLength();
   passwordInfo();
-  for (var i = 0, n = charset.length; i < passwordLength; i++) {
-    passValue += charSet.charAt(Math.floor(Math.random() * n ));
-  }
+  passGen ();
+  return passGen;
 }
 
 
@@ -58,7 +66,6 @@ var generatePassword = function () {
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 
 }
